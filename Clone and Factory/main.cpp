@@ -4,12 +4,6 @@
 #include "AnimalFactory.h"
 #include "Zoo.h"
 
-int Tiger::count = 0;
-int Wolf::count = 0;
-int Lemur::count = 0;
-int Kangaroo::count = 0;
-int Serpent::count = 0;
-
 int main() {
     Zoo* zoo = Zoo::getInstance();
 

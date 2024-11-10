@@ -24,8 +24,8 @@ void Zoo::cloneAnimal(const string& originalName) {
             string cloneName = "Clone_of_" + animal->getName();
             unique_ptr<Animal> clone(animal->clone());
             cout << animal->getType() << " " << animal->getName()
-                 << " was cloned, and his clone is named " << cloneName
-                 << ".\n";
+                 << " was cloned, and his clone is named " << cloneName << endl
+                 << endl;
             clones.push_back(move(clone));
             ++totalAnimals;
             break;
@@ -39,9 +39,10 @@ void Zoo::printZooStatus() const {
     cout << " tigers: " << Tiger::getCount() << ", wolves: " << Wolf::getCount()
          << ", lemurs: " << Lemur::getCount()
          << ", kangaroos:" << Kangaroo::getCount()
-         << " and serpents:" << Serpent::getCount() << endl;
+         << " and serpents:" << Serpent::getCount() << endl
+         << endl;
 
-    cout << "Out animals would like to introduce themselves:" << endl;
+    cout << "Our animals would like to introduce themselves:" << endl;
     for (const auto& animal : animals) {
         cout << *animal;
     }
@@ -52,4 +53,5 @@ void Zoo::printZooStatus() const {
             cout << *clone;
         }
     }
+    cout << endl;
 }

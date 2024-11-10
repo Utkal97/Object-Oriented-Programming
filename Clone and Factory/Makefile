@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 
-SRCS = Zoo.cpp main.cpp
+SRCS = Tiger.cpp Wolf.cpp Lemur.cpp Kangaroo.cpp Serpent.cpp Zoo.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 TARGET = zoo
 
