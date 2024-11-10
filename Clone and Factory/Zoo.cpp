@@ -1,0 +1,55 @@
+#include "Zoo.h"
+using namespace std;
+
+Zoo* Zoo::instance = nullptr;
+int Zoo::totalAnimals = 0;
+
+Zoo* Zoo::getInstance() {
+    if (instance == nullptr) {
+        instance = new Zoo();
+    }
+    return instance;
+}
+
+Zoo::Zoo() {}
+
+void Zoo::addAnimal(Animal* animal) {
+    animals.push_back(unique_ptr<Animal>(animal));
+    ++totalAnimals;
+}
+
+void Zoo::cloneAnimal(const string& originalName) {
+    for (const auto& animal : animals) {
+        if (animal->getName() == originalName) {
+            string cloneName = "Clone_of_" + animal->getName();
+            unique_ptr<Animal> clone(animal->clone());
+            cout << animal->getType() << " " << animal->getName()
+                 << " was cloned, and his clone is named " << cloneName
+                 << ".\n";
+            clones.push_back(move(clone));
+            ++totalAnimals;
+            break;
+        }
+    }
+}
+
+void Zoo::printZooStatus() const {
+    cout << "Wild Things Zoo has " << totalAnimals << " animals:" << endl;
+
+    cout << " tigers: " << Tiger::getCount() << ", wolves: " << Wolf::getCount()
+         << ", lemurs: " << Lemur::getCount()
+         << ", kangaroos:" << Kangaroo::getCount()
+         << " and serpents:" << Serpent::getCount() << endl;
+
+    cout << "Out animals would like to introduce themselves:" << endl;
+    for (const auto& animal : animals) {
+        cout << *animal;
+    }
+
+    if (!clones.empty()) {
+        cout << "\nZoo has some cloned animals:\n";
+        for (const auto& clone : clones) {
+            cout << *clone;
+        }
+    }
+}

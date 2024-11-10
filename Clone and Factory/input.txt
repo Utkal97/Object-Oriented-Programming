@@ -1,0 +1,5 @@
+tiger 2
+wolf 2
+kangaroo 1
+lemur 3
+serpent 2
