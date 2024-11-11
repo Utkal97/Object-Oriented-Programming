@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #include "Zoo.h"
 using namespace std;
 
@@ -13,8 +15,8 @@ Zoo* Zoo::getInstance() {
 
 Zoo::Zoo() {}
 
-void Zoo::addAnimal(Animal* animal) {
-    animals.push_back(unique_ptr<Animal>(animal));
+void Zoo::addAnimal(unique_ptr<Animal> animal) {
+    animals.push_back(move(animal));
     ++totalAnimals;
 }
 
@@ -22,11 +24,12 @@ void Zoo::cloneAnimal(const string& originalName) {
     for (const auto& animal : animals) {
         if (animal->getName() == originalName) {
             string cloneName = "Clone_of_" + animal->getName();
-            unique_ptr<Animal> clone(animal->clone());
+            unique_ptr<Animal> clonedAnimal = animal->clone();
+            clonedAnimal->setName(cloneName);
             cout << animal->getType() << " " << animal->getName()
                  << " was cloned, and his clone is named " << cloneName << endl
                  << endl;
-            clones.push_back(move(clone));
+            clones.push_back(move(clonedAnimal));
             ++totalAnimals;
             break;
         }

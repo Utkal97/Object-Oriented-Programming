@@ -1,3 +1,4 @@
+// Authors: Utkal Sirikonda, Ravindu Don
 #include "Serpent.h"
 
 int Serpent::count = 0;
@@ -9,7 +10,9 @@ Serpent::Serpent(const string& n) {
     ++count;
 }
 
-Animal* Serpent::clone() const { return new Serpent(*this); }
+unique_ptr<Animal> Serpent::clone() const {
+    return unique_ptr<Animal>(new Serpent(*this));
+}
 
 void Serpent::introduce() const {
     cout << "I am a serpent, my name is " << name << ", I " << sound

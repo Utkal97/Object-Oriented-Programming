@@ -1,3 +1,4 @@
+// Authors: Utkal Sirikonda, Ravindu Don
 #ifndef SERPENT_H
 
 #include "Animal.h"
@@ -9,7 +10,7 @@ class Serpent : public Animal {
    public:
     Serpent(const string& n);
 
-    Animal* clone() const override;
+    unique_ptr<Animal> clone() const override;
 
     void introduce() const override;
 

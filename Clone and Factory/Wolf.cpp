@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #include "Wolf.h"
 
 int Wolf::count = 0;
@@ -9,7 +11,9 @@ Wolf::Wolf(const string& n) {
     ++count;
 }
 
-Animal* Wolf::clone() const { return new Wolf(*this); }
+unique_ptr<Animal> Wolf::clone() const {
+    return unique_ptr<Animal>(new Wolf(*this));
+}
 
 void Wolf::introduce() const {
     cout << "I am a wolf, my name is " << name << ", I " << sound

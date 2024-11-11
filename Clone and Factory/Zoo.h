@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #ifndef ZOO_H
 #define ZOO_H
 
@@ -22,7 +24,7 @@ class Zoo {
    public:
     static Zoo* getInstance();
 
-    void addAnimal(Animal* animal);
+    void addAnimal(unique_ptr<Animal> animal);
 
     void cloneAnimal(const string& originalName);
 

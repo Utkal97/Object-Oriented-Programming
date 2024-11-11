@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #ifndef WOLF_H
 
 #include "Animal.h"
@@ -9,7 +11,7 @@ class Wolf : public Animal {
    public:
     Wolf(const string& n);
 
-    Animal* clone() const override;
+    unique_ptr<Animal> clone() const override;
 
     void introduce() const override;
 

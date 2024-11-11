@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #include <iostream>
 #include <string>
 
@@ -13,9 +15,9 @@ int main() {
     while (cin >> type >> count) {
         for (int i = 0; i < count; ++i) {
             string name = type + to_string(i + 1);
-            Animal* animal = AnimalFactory::createAnimal(type, name);
+            unique_ptr<Animal> animal = AnimalFactory::createAnimal(type, name);
             if (animal) {
-                zoo->addAnimal(animal);
+                zoo->addAnimal(move(animal));
             }
         }
     }

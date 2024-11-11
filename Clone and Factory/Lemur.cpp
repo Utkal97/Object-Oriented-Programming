@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #include "Lemur.h"
 
 int Lemur::count = 0;
@@ -9,7 +11,9 @@ Lemur::Lemur(const string& n) {
     ++count;
 }
 
-Animal* Lemur::clone() const { return new Lemur(*this); }
+unique_ptr<Animal> Lemur::clone() const {
+    return unique_ptr<Animal>(new Lemur(*this));
+}
 
 void Lemur::introduce() const {
     cout << "I am a lemur, my name is " << name << ", I " << sound

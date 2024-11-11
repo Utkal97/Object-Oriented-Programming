@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #include "Tiger.h"
 
 int Tiger::count = 0;
@@ -9,7 +11,9 @@ Tiger::Tiger(const string& n) {
     ++count;
 }
 
-Animal* Tiger::clone() const { return new Tiger(*this); }
+unique_ptr<Animal> Tiger::clone() const {
+    return unique_ptr<Animal>(new Tiger(*this));
+}
 
 void Tiger::introduce() const {
     cout << "I am a tiger, my name is " << name << ", I " << sound

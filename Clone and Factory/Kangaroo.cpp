@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #include "Kangaroo.h"
 
 int Kangaroo::count = 0;
@@ -9,7 +11,9 @@ Kangaroo::Kangaroo(const string& n) {
     ++count;
 }
 
-Animal* Kangaroo::clone() const { return new Kangaroo(*this); }
+unique_ptr<Animal> Kangaroo::clone() const {
+    return unique_ptr<Animal>(new Kangaroo(*this));
+}
 
 void Kangaroo::introduce() const {
     cout << "I am a kangaroo, my name is " << name << ", I " << sound

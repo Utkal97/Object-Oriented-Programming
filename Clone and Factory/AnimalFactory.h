@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #ifndef ANIMAL_FACTORY_H
 #define ANIMAL_FACTORY_H
 
@@ -11,21 +13,25 @@
 #include "Tiger.h"
 #include "Wolf.h"
 
+using namespace std;
+
 class AnimalFactory {
    public:
-    static Animal* createAnimal(const string& type, const string& name) {
+    static unique_ptr<Animal> createAnimal(const string& type,
+                                           const string& name) {
         if (type == "tiger")
-            return new Tiger(name);
+            return unique_ptr<Animal>(new Tiger(name));
         else if (type == "wolf")
-            return new Wolf(name);
+            return unique_ptr<Animal>(new Wolf(name));
         else if (type == "lemur")
-            return new Lemur(name);
+            return unique_ptr<Animal>(new Lemur(name));
         else if (type == "kangaroo")
-            return new Kangaroo(name);
+            return unique_ptr<Animal>(new Kangaroo(name));
         else if (type == "serpent")
-            return new Serpent(name);
+            return unique_ptr<Animal>(new Serpent(name));
+
         return nullptr;
     }
 };
 
-#endif  // ANIMAL_FACTORY_H
+#endif

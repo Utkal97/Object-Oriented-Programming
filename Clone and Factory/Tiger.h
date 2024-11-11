@@ -1,3 +1,5 @@
+// Authors: Utkal Sirikonda, Ravindu Don
+
 #ifndef TIGER_H
 
 #include "Animal.h"
@@ -9,7 +11,7 @@ class Tiger : public Animal {
    public:
     Tiger(const string& n);
 
-    Animal* clone() const override;
+    unique_ptr<Animal> clone() const override;
 
     void introduce() const override;
 
